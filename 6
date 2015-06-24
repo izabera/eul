@@ -1,0 +1,6 @@
+#!/bin/bash
+sumsquares () { sumsquares=$(( $1 * ( $1 + 1 ) * ( 2 * $1 + 1 ) / 6 )); }
+squaredsum () { squaredsum=$(( ( $1 * ( $1 + 1 ) / 2 ) ** 2 )); }
+sumsquares 100
+squaredsum 100
+echo "$(( squaredsum - sumsquares ))"
