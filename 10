@@ -1,0 +1,16 @@
+#!/bin/bash
+
+LANG=C
+arr=("" "" {2..2000000}) sum=
+for (( prime = 2; ; prime++ )) do
+  until [[ ${arr[prime]} ]]; do
+    (( prime++ ))
+  done
+  (( prime < 2000000 )) || break
+  (( sum += prime ))
+  for (( j = prime * 2; j < 2000000; j += prime )) do
+    arr[j]=
+  done
+done
+
+echo "$sum"

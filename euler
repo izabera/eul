@@ -1,5 +1,8 @@
 #!/bin/bash
 shopt -s extglob
 TIMEFORMAT='real: %lR, user: %lU, sys: %lS'
-for i in +([0-9]); do printf "%03d: " "$i"; time "./$i"; done |&
-  awk '{ getline var; printf "%-20s\t%s\n", $0, var }'
+for i in {0..999}; do
+  [[ -e $i ]] || continue
+  printf "%03d: " "$i"
+  time "./$i"
+done |& awk '{ getline var; printf "%-24s%s\n", $0, var }'
