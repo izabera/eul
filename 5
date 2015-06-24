@@ -1,0 +1,19 @@
+#!/bin/bash
+gcd () {
+  if (( $2 == 0 )); then
+    gcd=$1
+  else
+    gcd "$2" "$(( $1 % $2 ))"
+  fi
+}
+
+mcm () {
+  gcd "$1" "$2"
+  mcm=$(($1 / gcd * $2))
+}
+
+mcm=1
+for i in {1..20}; do
+  mcm "$i" "$mcm"
+done
+echo "$mcm"

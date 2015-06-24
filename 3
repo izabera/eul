@@ -1,0 +1,15 @@
+#!/bin/bash
+# largest factor of 600851475143
+largest=2 max=600851475143
+factor () {
+  for (( i = largest; i <= max; i++ )); do
+    if (( max % i == 0 )); then
+      max=$(( max / i ))
+      largest=$i
+      factor
+      break
+    fi
+  done
+}
+factor
+echo "$largest"
