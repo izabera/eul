@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# a reasonable upper bound
+lim=200001
+
+arr=("" "" {2..200001})
+for (( prime = 2; ${#primes[@]} < 10001; prime++ )) do
+  until [[ ${arr[prime]} ]]; do
+    (( prime++ ))
+  done
+  primes+=("$prime")
+  for (( j = prime * 2; j < lim; j += prime )) do
+    arr[j]=
+  done
+done
+
+echo "${primes[-1]}"
