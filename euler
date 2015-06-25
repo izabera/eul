@@ -1,8 +1,9 @@
 #!/bin/bash
 shopt -s extglob
 TIMEFORMAT='real: %lR, user: %lU, sys: %lS'
+[[ $1 = fast ]] && skip=([7]= [10]=)
 for i in {0..999}; do
-  [[ -e $i ]] || continue
+  [[ ! -e $i || -v skip[i] ]] && continue
   printf "%03d: " "$i"
   time "./$i"
 done |& awk '{ getline var; printf "%-24s%s\n", $0, var }'
